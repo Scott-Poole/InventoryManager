@@ -156,7 +156,7 @@ const addItemByScan = async function(params){
 			}
 			
 			let cell = siWorksheet.getCell(r, siHeaderNameToIndex["Quantity"]);
-			cell.value = 1;
+			cell.value += 1;
 			
 			await siWorksheet.saveUpdatedCells();
 			return;
@@ -233,7 +233,7 @@ const removeItemByScan = async function(params){
 			
 			let cell = siWorksheet.getCell(r, siHeaderNameToIndex["Quantity"]);
 			if(cell.value > 0){
-				cell.value = 0;
+				cell.value -= 1;
 			}
 			
 			await siWorksheet.saveUpdatedCells();
@@ -409,7 +409,7 @@ const updateItem = async function(params){
 			}
 			
 			for(let [name, val] of Object.entries(item)){
-				if(siHeaderNameToIndex[name] && siHeaderNameToIndex[name] > 3){
+				if(siHeaderNameToIndex[name] && siHeaderNameToIndex[name] > 2){
 					let cell = siWorksheet.getCell(r, siHeaderNameToIndex[name]);
 					cell.value = val;
 				}
